@@ -115,7 +115,6 @@ public static void main(String[] args) {
        }
    } while (menuChoice != 4);
 
-   //Do close your scanners when you're done with them to avoid a resource leak.
    //This is closing System.in (which is bad), but you're code is terminating anyway
    //so its ok
    input.close();
