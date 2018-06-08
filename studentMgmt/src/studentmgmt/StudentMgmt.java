@@ -58,8 +58,8 @@ public class Student_1{
 public static void main(String[] args) {
    int x = 0;
    int menuChoice = -1;
-   Student_1[] students = new Student_1[30]; //As a note, hard-coding this '30' is a bad idea.
-                                         //Probably should be static, final const in class.
+   Student_1[] students = new Student_1[30]; 
+    
    Scanner input = new Scanner (System.in);
    do{
        System.out.println("\t\t\tStudent Record Menu");
@@ -70,8 +70,7 @@ public static void main(String[] args) {
        if (menuChoice==1){
            if(x < 30) { //Able to add new student.
                System.out.println("Full name:");
-               String name = input.next();     //This was your error - should be next like the others,
-                                               //Not nextLine()
+               String name = input.next();     
                System.out.println("Age:");
                int age = input.nextInt();
                System.out.println("Roll no:");
@@ -115,8 +114,6 @@ public static void main(String[] args) {
        }
    } while (menuChoice != 4);
 
-   //This is closing System.in (which is bad), but you're code is terminating anyway
-   //so its ok
    input.close();
 }
 }
