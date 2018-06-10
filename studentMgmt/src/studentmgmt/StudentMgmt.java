@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * this project is for student management purpose.
+ * there are 4 functions add student, view all students, search students and exit. 
  */
 package studentmgmt;
 
 import java.util.*;
 
 
-public class Student_1{
+public class StudentMgmt{
     private String name;
     private int age;
     private int roll;
@@ -17,7 +16,7 @@ public class Student_1{
     private String section;
 
     /** Constructs a Student object with the given values */
-    public Student_1(String name, int age,int roll, String course, String year, String section){
+    public StudentMgmt(String name, int age,int roll, String course, String year, String section){
         this.name = name;
         this.age = age;
         this.roll =roll;
@@ -56,25 +55,26 @@ public class Student_1{
     }
 
 public static void main(String[] args) {
-   int x = 0;
+   int x = 0, roll=0;
    int menuChoice = -1;
-   Student_1[] students = new Student_1[30]; 
+   StudentMgmt[] students = new StudentMgmt[30]; 
     
    Scanner input = new Scanner (System.in);
    do{
        System.out.println("\t\t\tStudent Record Menu");
        System.out.println("\t\t1. Add Student\t2. View Students\t3. Search Student\t4. Exit");
+       System.out.println("Total roll numbers till now" + roll);
        System.out.println("Enter a choice: ");
        menuChoice = input.nextInt();
-
+       
        if (menuChoice==1){
-           if(x < 30) { //Able to add new student.
+           if(x < 30) {
+               roll++;// increment roll number on its own
+                //Able to add new student.
                System.out.println("Full name:");
                String name = input.next();     
                System.out.println("Age:");
                int age = input.nextInt();
-               System.out.println("Roll no:");
-               int roll = input.nextInt();
                System.out.println("Course:");
                String course = input.next();
                System.out.println("Year:");
@@ -83,7 +83,7 @@ public static void main(String[] args) {
                String section = input.next();
 
                //Create the new student using the given inputs
-               Student_1 s = new Student_1(name, age,roll, course, year, section);
+               StudentMgmt s = new StudentMgmt(name, age,roll, course, year, section);
 
                //Place in array
                students[x] = s;
@@ -94,21 +94,24 @@ public static void main(String[] args) {
                System.out.println("Can't add new student, students full");
            }
        }
+       /** to view all the students enrolled*/
        else if (menuChoice==2) {
            for (int i=0; i<x; i++) {
-               Student_1 s = students[i];
-               System.out.println(s.getName() + s.getAge() + s.getRoll() + s.getCourse() 
-                                      + s.getYear() + s.getSection());
+               StudentMgmt s = students[i];
+               System.out.println(s.getName() + "\t" + s.getAge() + "\t" + s.getRoll() +"\t" + s.getCourse() 
+                                      +"\t" + s.getYear() + "\t" +s.getSection());
            }
        }
-       else if(menuChoice==3)
+       else if(menuChoice==3) /** to search a specific student using roll number.*/
        {
-           System.out.println("Enter the roll no of the student:\n");
+           System.out.println("Enter the roll no of the student: (with in the bound of rooll number)\n");
            int id = input.nextInt();
-           Student_1 s1 = students[id];
+           
+           StudentMgmt s1 = students[id-1];
             System.out.println(s1.getName() + s1.getAge() +s1.getRoll()  + s1.getCourse() 
                                       + s1.getYear() + s1.getSection());
        }
+       /**to exit the loop*/
        else if(menuChoice < 1 || menuChoice > 4){
            System.out.println("Unrecognized menu choice; please re-enter");
        }
